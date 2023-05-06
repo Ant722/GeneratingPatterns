@@ -33,13 +33,21 @@ public class PersonBuilder {
     }
 
     public Person build() {
+        Person person;
         if (name == null) {
             throw new IllegalStateException("name обязательное поле,укажите имя обьекта");
         }
         if (surname == null) {
             throw new IllegalStateException("surname обязательное поле,укажите фамилию обьекта");
         }
-
-        return new Person(name, surname, age, address);
+        if (age == -1) {
+            person = new Person(name, surname);
+        } else {
+            person = new Person(name, surname, age);
+        }
+        if (address != null) {
+            person.setAddress(address);
+        }
+        return person;
     }
 }

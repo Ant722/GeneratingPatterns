@@ -2,29 +2,27 @@ package org.example;
 
 import java.util.OptionalInt;
 
-import static java.lang.Integer.MIN_VALUE;
+
 
 public class Person {
     protected final String name;
     protected final String surname;
-    protected int age = MIN_VALUE;
+    protected int age = -1;
     protected String address;
 
     public Person(String name, String surname) {
         this.name = name;
         this.surname = surname;
-        this.address = null;
     }
 
-    public Person(String name, String surname, Integer age, String address) {
+    public Person(String name, String surname, Integer age) {
         this.name = name;
         this.surname = surname;
         this.age = age;
-        this.address = address;
     }
 
     public boolean hasAge() {
-        return this.age == MIN_VALUE;
+        return this.age == -1;
     }
 
     public boolean hasAddress() {
@@ -40,7 +38,7 @@ public class Person {
     }
 
     public OptionalInt getAge() {
-        return OptionalInt.of(age);
+        return hasAge()?OptionalInt.of(age):OptionalInt.empty();
     }
 
     public String getAddress() {
